@@ -12,6 +12,7 @@
       "Bash(gh:*)",
       "Bash(git:*)",
       "Bash(ls:*)",
+      "Bash(pip index:*)",
       "Bash(punt:*)",
       "Bash(sed:*)",
       "Bash(shellcheck:*)",
