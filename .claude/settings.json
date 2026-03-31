@@ -43,8 +43,10 @@
       "Bash(wget:*)",
       "Edit(.env)",
       "Edit(.envrc)",
+      "Edit(.envrc.local)",
       "Write(.env)",
-      "Write(.envrc)"
+      "Write(.envrc)",
+      "Write(.envrc.local)"
     ]
   }
 }
