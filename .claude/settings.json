@@ -1,0 +1,52 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash:*)",
+      "Bash(bd:*)",
+      "Bash(cat:*)",
+      "Bash(chmod +x:*)",
+      "Bash(claude mcp:*)",
+      "Bash(claude plugin:*)",
+      "Bash(export:*)",
+      "Bash(find:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(punt:*)",
+      "Bash(sed:*)",
+      "Bash(shellcheck:*)",
+      "Bash(tail:*)",
+      "Bash(test:*)",
+      "mcp__github__*",
+      "mcp__plugin_biff_tty__*",
+      "mcp__plugin_github_github__*",
+      "mcp__plugin_quarry_quarry__*",
+      "mcp__quarry__*"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(dd:*)",
+      "Bash(direnv allow:*)",
+      "Bash(ftp:*)",
+      "Bash(nc:*)",
+      "Bash(ncat:*)",
+      "Bash(netcat:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(scp:*)",
+      "Bash(socat:*)",
+      "Bash(ssh:*)",
+      "Bash(su:*)",
+      "Bash(sudo:*)",
+      "Bash(telnet:*)",
+      "Bash(tftp:*)",
+      "Bash(wget:*)",
+      "Edit(.env)",
+      "Edit(.envrc)",
+      "Edit(.envrc.local)",
+      "Write(.env)",
+      "Write(.envrc)",
+      "Write(.envrc.local)"
+    ]
+  }
+}
