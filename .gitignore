@@ -9,7 +9,6 @@ Thumbs.db
 
 # Environment
 .env
-.envrc
 .envrc.local
 
 # Claude Code local settings (settings.json is tracked; only local overrides are excluded)
