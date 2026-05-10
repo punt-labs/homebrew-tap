@@ -78,7 +78,7 @@ Do not merge immediately after creating a PR. Expect 2–6 review cycles before 
 
 Most homebrew-tap work is direct: bump a version, paste a checksum, update a URL. The work is small and mechanical, but a wrong SHA-256 or bad URL invalidates `brew install` for every user. Pair every change with an evaluator.
 
-Worker and evaluator must be distinct handles with no shared role. Claude is the leader, never the evaluator.
+Within each row, the worker and evaluator must be distinct handles. Claude is the leader, never the evaluator.
 
 | Task type | Worker | Evaluator |
 |-----------|--------|-----------|
