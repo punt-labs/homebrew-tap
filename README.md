@@ -14,6 +14,7 @@ brew tap punt-labs/tap
 |---------|-------------|---------|
 | `mcp-proxy` | Lightweight proxy bridging MCP stdio to shared daemon processes | `brew install punt-labs/tap/mcp-proxy` |
 | `quarry` | Local semantic search engine | `brew install punt-labs/tap/quarry` |
+| `quarry-menubar` | macOS menu bar app for Quarry document search | `brew install punt-labs/tap/quarry-menubar` |
 
 ### Quarry Daemon
 
