@@ -5,29 +5,29 @@ class Ethos < Formula
   desc "Identity binding for humans and AI agents"
   homepage "https://github.com/punt-labs/ethos"
   license "MIT"
-  version "0.3.4"
+  version "4.4.1"
 
   on_macos do
     on_arm do
-      url "https://github.com/punt-labs/ethos/releases/download/v0.3.4/ethos-darwin-arm64"
-      sha256 "9b4d20a593bcc5057b37acdec25cdc507c5bdc5387dd30dc4d4735d2b5cca96e"
+      url "https://github.com/punt-labs/ethos/releases/download/v4.4.1/ethos-darwin-arm64"
+      sha256 "a08d289b30a3a0b2225d88082841c59015a979bbd1d2f1d5e7f3dc4a0a56b7f6"
     end
 
     on_intel do
-      url "https://github.com/punt-labs/ethos/releases/download/v0.3.4/ethos-darwin-amd64"
-      sha256 "d3126926b46ab4d28958e3736f4a89c1908689f8a6c66837188357005c78cb62"
+      url "https://github.com/punt-labs/ethos/releases/download/v4.4.1/ethos-darwin-amd64"
+      sha256 "fe927a4d0c60be3714426d100e40a8f6dadc0432eb6b6229c3270ea05d81ac1f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/punt-labs/ethos/releases/download/v0.3.4/ethos-linux-arm64"
-      sha256 "00da37f5457b2d8ea5f5640d353de892546a5fa4d7de2075aee2b195bc62baf6"
+      url "https://github.com/punt-labs/ethos/releases/download/v4.4.1/ethos-linux-arm64"
+      sha256 "d1efa72c19964e5f757c2929ad9807c35bee56bfc47b409881b652bb691f6cb9"
     end
 
     on_intel do
-      url "https://github.com/punt-labs/ethos/releases/download/v0.3.4/ethos-linux-amd64"
-      sha256 "a422531c8c7150d4d81c88d823385fcecd254388c96daf7a96ce732a22fe01ba"
+      url "https://github.com/punt-labs/ethos/releases/download/v4.4.1/ethos-linux-amd64"
+      sha256 "0a43b444404225d873d3221219800ad85fa9b68cc9715c5e46853a3deef744aa"
     end
   end
 
@@ -37,6 +37,6 @@ class Ethos < Formula
   end
 
   test do
-    assert_match "ethos 0.3.4", shell_output("#{bin}/ethos version")
+    assert_match "ethos 4.4.1", shell_output("#{bin}/ethos version")
   end
 end
