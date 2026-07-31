@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - quarry-menubar: bump to v0.6.0
+- ethos: bump to v4.8.0
+- ethos: bump to v4.9.0
 
 ## [0.1.0] - 2026-03-12
 
