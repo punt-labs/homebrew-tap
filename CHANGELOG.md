@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - quarry-menubar: bump to v0.6.0
 - quarry-menubar: bump to v0.6.1
+- quarry-menubar: bump to v0.6.2
 - ethos: bump to v4.8.0
 - ethos: bump to v4.9.0
 
