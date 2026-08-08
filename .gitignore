@@ -16,3 +16,6 @@ Thumbs.db
 
 # Scratch/temp directory
 .tmp/
+
+# Quarry session-transcript captures (pkit-kcps)
+.punt-labs/quarry/captures/
