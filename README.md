@@ -12,6 +12,8 @@ brew tap punt-labs/tap
 
 | Formula | Description | Install |
 |---------|-------------|---------|
+| `biff` | CLI communication tool for software engineers — wall, write, talk, finger | `brew install punt-labs/tap/biff` |
+| `ethos` | Identity binding for humans and AI agents | `brew install punt-labs/tap/ethos` |
 | `mcp-proxy` | Lightweight proxy bridging MCP stdio to shared daemon processes | `brew install punt-labs/tap/mcp-proxy` |
 | `quarry` | Local semantic search engine | `brew install punt-labs/tap/quarry` |
 | `quarry-menubar` | macOS menu bar app for Quarry document search | `brew install punt-labs/tap/quarry-menubar` |

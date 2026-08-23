@@ -390,6 +390,6 @@ class Biff < Formula
   end
 
   test do
-    assert_match "biff", shell_output("#{bin}/biff version")
+    assert_match "biff #{version}", shell_output("#{bin}/biff version")
   end
 end
