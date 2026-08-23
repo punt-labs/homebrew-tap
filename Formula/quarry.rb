@@ -6,8 +6,8 @@ class Quarry < Formula
 
   desc "Local semantic search engine — extract searchable knowledge from any document"
   homepage "https://github.com/punt-labs/quarry"
-  url "https://files.pythonhosted.org/packages/source/p/punt-quarry/punt_quarry-1.3.9.tar.gz"
-  sha256 "PLACEHOLDER"
+  url "https://files.pythonhosted.org/packages/e1/15/3c239f495df2bd35a0a03d6b3940bb9a38a70e96b72504189eed1cf75eab/punt_quarry-3.0.3.tar.gz"
+  sha256 "4483b28b9892cf5143ad36561b695187fc3038d8fa4a57e01ba37176b0e99a89"
   license "MIT"
 
   depends_on "python@3.13"
@@ -21,7 +21,9 @@ class Quarry < Formula
   end
 
   service do
-    run [opt_bin/"quarry", "serve", "--port", "8420"]
+    # quarry has no "serve" subcommand -- the daemon is a separate console-script
+    # entry point, quarryd (pyproject.toml [project.scripts]).
+    run [opt_bin/"quarryd", "--port", "8420"]
     keep_alive true
     log_path var/"log/quarry.log"
     error_log_path var/"log/quarry.log"
