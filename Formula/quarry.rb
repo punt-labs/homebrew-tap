@@ -19,12 +19,17 @@ class Quarry < Formula
   depends_on "python@3.13"
   uses_from_macos "libxml2" # lxml
   uses_from_macos "libxslt" # lxml
-
-  # lancedb and onnxruntime (below) ship no macOS x86_64 wheel at these pinned
-  # versions -- Intel is unsupported until upstream publishes one.
   on_macos do
     depends_on arch: :arm64
   end
+
+  on_linux do
+    depends_on "libxml2" # lxml -- uses_from_macos above doesn't apply here
+    depends_on "libxslt" # lxml
+  end
+
+  # lancedb and onnxruntime (below) ship no macOS x86_64 wheel at these pinned
+  # versions -- Intel is unsupported until upstream publishes one.
 
   # lancedb and onnxruntime ship wheel-only on PyPI (no sdist), so
   # brew update-python-resources cannot generate these two automatically --
