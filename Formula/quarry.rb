@@ -10,8 +10,8 @@ class Quarry < Formula
   sha256 "4483b28b9892cf5143ad36561b695187fc3038d8fa4a57e01ba37176b0e99a89"
   license "MIT"
 
-  depends_on "cmake" => :build # aws-lc-sys (hf-xet's TLS backend)
-  depends_on "rust" => :build # cryptography, pydantic-core, rpds-py, tokenizers, hf-xet
+  depends_on "cmake" => :build # opencv-python(-headless) cmake configure
+  depends_on "rust" => :build # cryptography, pydantic-core, rpds-py, tokenizers
   depends_on "apache-arrow" # pyarrow links against the system Arrow C++
   depends_on "geos" # shapely
   depends_on "jpeg-turbo" # pillow
@@ -395,11 +395,6 @@ class Quarry < Formula
     sha256 "41571c89ca91598c79e8ef18a2d07367d4810fbbd6f637794879baf1b7703423"
   end
 
-  resource "pymupdf" do
-    url "https://files.pythonhosted.org/packages/a3/fb/b6761fa2d5266f2cdb24c3b91f4023070ab7848381417678e7a289a1d52a/pymupdf-1.28.2.tar.gz"
-    sha256 "5e0be7908a715aa20333caddd73f1d6f01e4cd0c26e869fa2dd0b7f344da2249"
-  end
-
   resource "python-dateutil" do
     url "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz"
     sha256 "37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"
@@ -585,13 +580,19 @@ class Quarry < Formula
     # necessary for every pyo3 extension-module build on macOS, so set it
     # explicitly rather than track down why this one crate's build.rs
     # doesn't inject it itself. Linux doesn't need or want this flag.
-    ENV["RUSTFLAGS"] = "-C link-arg=-undefined -C link-arg=dynamic_lookup" if OS.mac?
+    if OS.mac?
+      ENV["RUSTFLAGS"] = "#{ENV["RUSTFLAGS"]} -C link-arg=-undefined -C link-arg=dynamic_lookup".strip
+    end
     venv = virtualenv_install_with_resources without: %w[
       lancedb onnxruntime pymupdf tree-sitter-c-sharp tree-sitter-yaml
       hf-xet opencv-python opencv-python-headless
     ]
     %w[lancedb onnxruntime pymupdf tree-sitter-c-sharp tree-sitter-yaml].each do |name|
-      resource(name).stage { venv.pip_install Pathname.pwd.glob("*.whl").first }
+      resource(name).stage do
+        whl = Pathname.pwd.glob("*.whl").first
+        odie "no wheel found while staging resource \"#{name}\"" if whl.nil?
+        venv.pip_install whl
+      end
     end
     %w[opencv-python opencv-python-headless].each do |name|
       resource(name).stage do
