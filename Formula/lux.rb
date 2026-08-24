@@ -13,7 +13,12 @@ class Lux < Formula
   depends_on "rust" => :build
   depends_on "jpeg-turbo" # pillow
   depends_on "libyaml" # pyyaml
+  depends_on :macos
   depends_on "python@3.13"
+  # The imgui-bundle resource below pins a single macOS arm64 wheel (see the
+  # comment on that resource) -- there is no Linux stanza yet, so a Linux
+  # build would hand pip a macOS wheel and fail. macOS-only until Linux gets
+  # its own pinned wheel; tracked as a follow-up to lux-qpfs.
 
   # imgui-bundle ships no macOS x86_64 wheel at this pinned version -- Intel
   # is unsupported until upstream publishes one.
@@ -167,8 +172,8 @@ class Lux < Formula
   end
 
   resource "imgui-bundle" do
-    url "https://files.pythonhosted.org/packages/18/47/ff477f7258baddf0c02bbcf6406099c7ed78ebd63f3b9cebce899e6cf79a/imgui_bundle-1.92.900.tar.gz"
-    sha256 "1476409b76c7f600d0da472aed87e96382444df50695280b3ed9acd5065cb6c2"
+    url "https://files.pythonhosted.org/packages/d0/b1/997a598fc0b9e4d7a786493e41d133e1be6bafa6246e344dcc2c5206b2ee/imgui_bundle-1.92.900-cp313-cp313-macosx_14_0_arm64.whl"
+    sha256 "878ab97e631b06421538940b973ae45157e146787627c27a31c827c52e9dfc45"
   end
 
   resource "jaraco-classes" do
