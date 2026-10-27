@@ -64,15 +64,20 @@ When an upstream tool ships a new release:
 
 ## Code Review Flow
 
-Do not merge immediately after creating a PR. Expect 2–6 review cycles before merging.
+PR review follows punt-kit/standards/pr-review.md: local review (qodo review +
+silent-failure-hunter + code-reviewer) before the PR, then Qodo and Bugbot
+once at open, at most two rounds, Copilot only on request.
 
-1. **Create PR** — push branch, open PR via `mcp__github__create_pull_request`.
-2. **Request Copilot review** — `mcp__github__request_copilot_review`.
-3. **Watch for feedback in the background** — `gh pr checks <number> --watch` in a background task. Bots can take 1–3 minutes after CI completes.
-4. **Read all feedback** — `mcp__github__pull_request_read` with `get_reviews` and `get_review_comments`.
-5. **Address every comment.** No "pre-existing" excuses. If a checksum is wrong, the user gets a broken install — fix it.
-6. **Fix, re-push, repeat** until the latest review is uneventful.
-7. **Merge via `mcp__github__merge_pull_request`** when the last review was clean.
+1. **Run local review** — `qodo review` + silent-failure-hunter +
+   code-reviewer on the diff; fix what they find before the PR opens.
+2. **Create PR** — push branch, open PR via `mcp__github__create_pull_request`.
+3. **Answer every finding.** Qodo findings through the qodo CLI
+   (`mark-implemented` or `dismiss`, with the reason); every other finding by a
+   commit or a reasoned reply. There is no such thing as "pre-existing" or
+   "unrelated to this change" — if you can see it, you own it. If a checksum is
+   wrong, the user gets a broken install; fix it.
+4. **Merge** via `mcp__github__merge_pull_request` (not `gh pr merge`) when
+   `merge_gate` in punt-kit/standards/pr-review.md holds.
 
 ## Ethos & Delegation
 
