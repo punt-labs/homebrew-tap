@@ -72,7 +72,7 @@ once at open, at most two rounds, Copilot only on request.
 2. **Read all feedback** — `mcp__github__pull_request_read` with `get_reviews` and `get_review_comments`. Bots can take 1–3 minutes after CI completes.
 3. **Address every comment.** No "pre-existing" excuses. If a checksum is wrong, the user gets a broken install — fix it.
 4. **Fix and re-push** — fix every finding in the PR, push once per round.
-5. **Merge via `mcp__github__merge_pull_request`** once checks are green and no review thread is unresolved.
+5. **Merge via `mcp__github__merge_pull_request`** once checks are green, no review thread is unresolved, and Qodo and Bugbot have each reported on the PR head or 30 minutes have passed since the PR opened. A bot that has not posted yet is not a clean review.
 
 ## Ethos & Delegation
 
