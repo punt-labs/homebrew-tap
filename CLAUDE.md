@@ -68,11 +68,16 @@ PR review follows punt-kit/standards/pr-review.md: local review (qodo review +
 silent-failure-hunter + code-reviewer) before the PR, then Qodo and Bugbot
 once at open, at most two rounds, Copilot only on request.
 
-1. **Create PR** — push branch, open PR via `mcp__github__create_pull_request`.
-2. **Read all feedback** — `mcp__github__pull_request_read` with `get_reviews` and `get_review_comments`. Bots can take 1–3 minutes after CI completes.
-3. **Address every comment.** No "pre-existing" excuses. If a checksum is wrong, the user gets a broken install — fix it.
-4. **Fix and re-push** — fix every finding in the PR, push once per round.
-5. **Merge via `mcp__github__merge_pull_request`** once checks are green, no review thread is unresolved, and Qodo and Bugbot have each reported on the PR head or 30 minutes have passed since the PR opened. A bot that has not posted yet is not a clean review.
+1. **Run local review** — `qodo review` + silent-failure-hunter +
+   code-reviewer on the diff; fix what they find before the PR opens.
+2. **Create PR** — push branch, open PR via `mcp__github__create_pull_request`.
+3. **Answer every finding.** Qodo findings through the qodo CLI
+   (`mark-implemented` or `dismiss`, with the reason); every other finding by a
+   commit or a reasoned reply. There is no such thing as "pre-existing" or
+   "unrelated to this change" — if you can see it, you own it. If a checksum is
+   wrong, the user gets a broken install; fix it.
+4. **Merge** via `mcp__github__merge_pull_request` (not `gh pr merge`) when
+   `merge_gate` in punt-kit/standards/pr-review.md holds.
 
 ## Ethos & Delegation
 
