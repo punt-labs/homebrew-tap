@@ -64,15 +64,15 @@ When an upstream tool ships a new release:
 
 ## Code Review Flow
 
-Do not merge immediately after creating a PR. Expect 2–6 review cycles before merging.
+PR review follows punt-kit/standards/pr-review.md: local review (qodo review +
+silent-failure-hunter + code-reviewer) before the PR, then Qodo and Bugbot
+once at open, at most two rounds, Copilot only on request.
 
 1. **Create PR** — push branch, open PR via `mcp__github__create_pull_request`.
-2. **Request Copilot review** — `mcp__github__request_copilot_review`.
-3. **Watch for feedback in the background** — `gh pr checks <number> --watch` in a background task. Bots can take 1–3 minutes after CI completes.
-4. **Read all feedback** — `mcp__github__pull_request_read` with `get_reviews` and `get_review_comments`.
-5. **Address every comment.** No "pre-existing" excuses. If a checksum is wrong, the user gets a broken install — fix it.
-6. **Fix, re-push, repeat** until the latest review is uneventful.
-7. **Merge via `mcp__github__merge_pull_request`** when the last review was clean.
+2. **Read all feedback** — `mcp__github__pull_request_read` with `get_reviews` and `get_review_comments`. Bots can take 1–3 minutes after CI completes.
+3. **Address every comment.** No "pre-existing" excuses. If a checksum is wrong, the user gets a broken install — fix it.
+4. **Fix and re-push** — fix every finding in the PR, push once per round.
+5. **Merge via `mcp__github__merge_pull_request`** once checks are green and no review thread is unresolved.
 
 ## Ethos & Delegation
 
