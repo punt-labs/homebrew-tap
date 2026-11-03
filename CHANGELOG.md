@@ -24,6 +24,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `resolution: repo-only`, so a fresh clone resolves its ethos identities
   without the retired team-registry submodule or a global store.
 
+### Fixed
+
+- ethos config resolves layered again so the engineering team, seeded pipelines and the claude leader identity resolve alongside the vendored gstack team
+
 ## [0.1.0] - 2026-03-12
 
 ### Added
