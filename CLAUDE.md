@@ -100,3 +100,4 @@ The full org roster is available via `ethos identity list`. Use the `docs` pipel
 - [Distribution](https://github.com/punt-labs/punt-kit/blob/main/standards/distribution.md)
 - [Release Process](https://github.com/punt-labs/punt-kit/blob/main/standards/release-process.md)
 - [GitHub](https://github.com/punt-labs/punt-kit/blob/main/standards/github.md)
+@.punt-labs/ethos/CLAUDE.md
