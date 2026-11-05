@@ -13,6 +13,7 @@ class Quarry < Formula
   sha256 "8c82dcd3483724936700feeda4d74c081c178ada911040f7c329cb05d2c284ce"
   license "MIT"
 
+  depends_on "cmake" => :build # pyarrow sdist builds against apache-arrow
   depends_on "rust" => :build # cryptography, pydantic-core, rpds-py, tokenizers
   depends_on "apache-arrow" # pyarrow links against the system Arrow C++
   depends_on "geos" # shapely
