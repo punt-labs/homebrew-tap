@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Vendor the gstack ethos team under `.punt-labs/ethos/` and set
   `resolution: repo-only`, so a fresh clone resolves its ethos identities
   without the retired team-registry submodule or a global store.
+- quarry: bump to v3.6.0
 
 ### Fixed
 
