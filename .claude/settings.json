@@ -2,7 +2,6 @@
   "permissions": {
     "allow": [
       "Bash(bash:*)",
-      "Bash(bd:*)",
       "Bash(cat:*)",
       "Bash(chmod +x:*)",
       "Bash(claude mcp:*)",
@@ -13,16 +12,12 @@
       "Bash(git:*)",
       "Bash(ls:*)",
       "Bash(pip index:*)",
-      "Bash(punt:*)",
       "Bash(sed:*)",
       "Bash(shellcheck:*)",
       "Bash(tail:*)",
       "Bash(test:*)",
       "mcp__github__*",
-      "mcp__plugin_biff_tty__*",
-      "mcp__plugin_github_github__*",
-      "mcp__plugin_quarry_quarry__*",
-      "mcp__quarry__*"
+      "mcp__plugin_github_github__*"
     ],
     "deny": [
       "Bash(curl:*)",
