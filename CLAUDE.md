@@ -2,10 +2,6 @@
 
 The Punt Labs Homebrew tap. Distributes pre-built binaries for the Go-based tools (`ethos`, `mcp-proxy`, `quarry`) that ship as platform binaries via GitHub Releases. Users install with `brew tap punt-labs/tap && brew install <name>`.
 
-## Identity
-
-You are **Claude Agento** (`claude`), an agent in the Punt Labs org. Repo identity is set by `.punt-labs/ethos.yaml` with `agent: claude` and `team: engineering`. SessionStart and PreCompact hooks inject the persona; sub-agent calls match `subagent_type` to ethos identity handles.
-
 ## Standards
 
 This project follows [Punt Labs standards](https://github.com/punt-labs/punt-kit). When this CLAUDE.md conflicts with punt-kit standards, this file wins (most specific wins).
@@ -79,25 +75,8 @@ once at open, at most two rounds, Copilot only on request.
 4. **Merge** via `mcp__github__merge_pull_request` (not `gh pr merge`) when
    `merge_gate` in punt-kit/standards/pr-review.md holds.
 
-## Ethos & Delegation
-
-Most homebrew-tap work is direct: bump a version, paste a checksum, update a URL. The work is small and mechanical, but a wrong SHA-256 or bad URL invalidates `brew install` for every user. Pair every change with an evaluator.
-
-Within each row, the worker and evaluator must be distinct handles. Claude is the leader, never the evaluator.
-
-| Task type | Worker | Evaluator |
-|-----------|--------|-----------|
-| Formula version bump (existing tool) | `claude` (leader, direct) | `adb` (Lovelace) — release/CI awareness |
-| New formula (new tool tapped) | `claude` (leader) | `kth` (Hightower) — install path / operability |
-| Caveats / install messaging | `claude` (leader, direct) | `dna` (Norman) — UX, error prevention |
-| README install instructions | `claude` (leader, direct) | `claudia` (Massimo) — editorial |
-| Cross-platform binary verification | `claude` (leader) | `bwk` (Kernighan) — Go-side build awareness |
-
-The full org roster is available via `ethos identity list`. Use the `docs` pipeline for formula-only changes; otherwise direct dispatch is the right shape.
-
 ## Standards References
 
 - [Distribution](https://github.com/punt-labs/punt-kit/blob/main/standards/distribution.md)
 - [Release Process](https://github.com/punt-labs/punt-kit/blob/main/standards/release-process.md)
 - [GitHub](https://github.com/punt-labs/punt-kit/blob/main/standards/github.md)
-@.punt-labs/ethos/CLAUDE.md
