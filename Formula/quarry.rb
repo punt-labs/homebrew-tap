@@ -28,8 +28,11 @@ class Quarry < Formula
   end
 
   on_linux do
+    depends_on "patchelf" => :build # meson-python (numpy) otherwise builds patchelf from source
+    depends_on "pkgconf" => :build # cryptography: openssl-sys finds OpenSSL via pkg-config
     depends_on "libxml2" # lxml -- uses_from_macos above doesn't apply here
     depends_on "libxslt" # lxml
+    depends_on "openssl@3" # cryptography
   end
 
   # The wheel resources below ship no macOS x86_64 build at these locked
