@@ -33,18 +33,32 @@ This starts `quarry serve` on port 8420 at login, with automatic restart on cras
 The agent check policy requires an Ethos build containing DES-085 (`post-edit`
 and staged checks), such as upstream commit `f4f884f`, until the next release.
 Released v5.1.1 and the v4.13.0 binary currently shipped by this tap do not
-support the new edit hook. Put a compatible binary on `PATH`; installing the
-tap's current formula alone does not provide edit feedback.
+support the new edit hook. Installing the tap's current formula alone does
+not provide edit feedback. With Go and Make installed, build the compatible
+version in a separate checkout (choose an unused destination):
+
+```bash
+git clone https://github.com/punt-labs/ethos.git "$HOME/ethos-agent-checks"
+git -C "$HOME/ethos-agent-checks" checkout --detach f4f884fb07e6a0c7381bc9c3cd05a84191a597e1
+make -C "$HOME/ethos-agent-checks" build
+export PATH="$HOME/ethos-agent-checks:$PATH"
+```
+
+Keep that directory ahead of the tap-installed binary on `PATH` in every
+contributor and agent shell until a compatible release is installed.
 
 Cloning this repository does not install Git hooks. With a compatible Ethos
 binary on `PATH`, enable its local integration from this checkout:
 
 ```bash
-ethos enable
+sh scripts/setup-agent-checks.sh
 ```
 
-This installs the Git pre-commit dispatcher that runs blocking style checks
-on staged `Formula/*.rb` files. Handoff checks also require the matching
+The setup script rejects missing or older binaries, runs `ethos enable`, and
+verifies that the executable Git pre-commit dispatcher was installed. Ordinary
+commits then run blocking style checks on staged `Formula/*.rb` files. Run
+setup once per clone and again when upgrading Ethos; existing Git hooks are
+chained by Ethos rather than replaced. Handoff checks also require the matching
 [Ethos Claude Code plugin](https://github.com/punt-labs/ethos#install)
 and its `SubagentStop` hook. Without these local integrations, the check-set
 declarations alone do not enforce commit or handoff checks.
