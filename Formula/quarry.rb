@@ -678,8 +678,8 @@ class Quarry < Formula
     # entry point, quarryd (pyproject.toml [project.scripts]).
     run [opt_bin/"quarryd", "--port", "8420"]
     keep_alive true
-    log_path "/dev/null"
-    error_log_path "/dev/null"
+    log_path File::NULL
+    error_log_path File::NULL
   end
 
   test do
