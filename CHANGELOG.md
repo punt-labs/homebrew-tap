@@ -25,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   without the retired team-registry submodule or a global store.
 - quarry: bump to v3.6.0
 - quarry: bump to v3.9.0
+- quarry: bump to v3.9.1
 
 ### Fixed
 
