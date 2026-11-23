@@ -29,8 +29,8 @@ A formula change is not ready to merge until `brew audit` is clean and `brew ins
 
 ## Formula Conventions
 
-- **Versioning**: the formula version matches the upstream Git tag (`v1.2.3` → `version "1.2.3"`).
-- **URL pattern**: `https://github.com/punt-labs/<repo>/releases/download/v#{version}/<binary>-<os>-<arch>.tar.gz`.
+- **Versioning**: the formula's effective version matches the upstream Git tag. Prefer Homebrew's URL inference (`/v1.2.3/` → version `1.2.3`); declare `version` only when inference fails, since redundant declarations fail audit.
+- **URL pattern**: use the upstream release's actual asset names. Archive releases use `https://github.com/punt-labs/<repo>/releases/download/v<version>/<binary>-<os>-<arch>.tar.gz`. Ethos publishes bare binaries, so its URLs end in `ethos-<os>-<arch>` without an archive suffix.
 - **SHA-256**: copy from the upstream release's `checksums.txt`. Never compute locally — the canonical digest is the one published with the release.
 - **License**: matches upstream (typically MIT).
 - **Test block**: minimum is `system "#{bin}/<binary>", "version"` returning successfully.

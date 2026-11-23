@@ -30,22 +30,20 @@ This starts `quarry serve` on port 8420 at login, with automatic restart on cras
 
 ## Contributor checks
 
-The agent check policy requires an Ethos build containing DES-085 (`post-edit`
-and staged checks), such as upstream commit `f4f884f`, until the next release.
-Released v5.1.1 and the v4.13.0 binary currently shipped by this tap do not
-support the new edit hook. Installing the tap's current formula alone does
-not provide edit feedback. With Go and Make installed, build the compatible
-version in a separate checkout (choose an unused destination):
+The agent check policy requires Ethos v5.2.0 or later for DES-085 (`post-edit`
+and staged checks). This tap ships a compatible version: run
+`brew install punt-labs/tap/ethos`, or `brew upgrade punt-labs/tap/ethos` for an
+existing installation. Alternatively, install the released v5.2.0 binary and
+plugin using its tagged installer:
 
 ```bash
-git clone https://github.com/punt-labs/ethos.git "$HOME/ethos-agent-checks"
-git -C "$HOME/ethos-agent-checks" checkout --detach f4f884fb07e6a0c7381bc9c3cd05a84191a597e1
-make -C "$HOME/ethos-agent-checks" build
-export PATH="$HOME/ethos-agent-checks:$PATH"
+curl -fsSL https://raw.githubusercontent.com/punt-labs/ethos/v5.2.0/install.sh | sh
+export PATH="$HOME/.local/bin:$PATH"
+ethos version
 ```
 
-Keep that directory ahead of the tap-installed binary on `PATH` in every
-contributor and agent shell until a compatible release is installed.
+Use `ethos version` to confirm that `PATH` selects a compatible binary in every
+contributor and agent shell.
 
 Cloning this repository does not install Git hooks. With a compatible Ethos
 binary on `PATH`, enable its local integration from this checkout:
@@ -71,8 +69,9 @@ Run contributor setup before using the generated agents, not just before
 committing. Their generated commands fail open, with no fallback style check:
 if `ethos` disappears from `PATH`, no edit feedback is available. Restore the
 compatible binary and rerun setup. A separate repository PostToolUse hook emits
-an advisory if Ethos leaves `PATH`, so missing-binary feedback does not depend
-on Ethos itself. The explicit `~/.punt-hooks-kill` switch silences both hooks.
+an advisory if Ethos leaves `PATH` or no longer supports `post-edit`, so a stale
+tap-installed binary is detected too. The explicit `~/.punt-hooks-kill` switch
+silences both hooks.
 Only `Formula/*.rb` receives edit feedback. Shell, YAML, and Makefile edits no
 longer invoke `make check`: this tap has no Makefile or `check` target, so that
 old hook only failed on those edits. Check shell changes with `shellcheck`.

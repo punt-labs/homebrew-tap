@@ -35,9 +35,33 @@ class AgentRuntimeTest(unittest.TestCase):
 
     def test_available_binary_is_quiet(self):
         binary = self.home / 'ethos'
-        binary.write_text('#!/bin/sh\nexit 0\n')
+        binary.write_text('#!/bin/sh\necho "post-edit input: tool_input.file_path is required"\n')
         binary.chmod(0o755)
         self.assertEqual(self.run_hook(), '')
+
+    def test_old_binary_emits_advisory(self):
+        binary = self.home / 'ethos'
+        binary.write_text('#!/bin/sh\necho "Usage: ethos hook [command]"\n')
+        binary.chmod(0o755)
+        output = json.loads(self.run_hook())['hookSpecificOutput']
+        self.assertIn('incompatible', output['additionalContext'])
+
+    def test_failed_invocation_emits_advisory(self):
+        binary = self.home / 'ethos'
+        binary.write_text('#!/bin/sh\necho "ethos hook post-edit"\nexit 1\n')
+        binary.chmod(0o755)
+        output = json.loads(self.run_hook())['hookSpecificOutput']
+        self.assertIn('checks are not running', output['additionalContext'])
+
+    def test_working_help_but_broken_invocation_emits_advisory(self):
+        binary = self.home / 'ethos'
+        binary.write_text(
+            '#!/bin/sh\nif [ "${3-}" = --help ]; then\n'
+            'echo "ethos hook post-edit"\nelse\nexit 1\nfi\n'
+        )
+        binary.chmod(0o755)
+        output = json.loads(self.run_hook())['hookSpecificOutput']
+        self.assertIn('checks are not running', output['additionalContext'])
 
     def test_explicit_kill_switch_is_quiet(self):
         (self.home / '.punt-hooks-kill').touch()

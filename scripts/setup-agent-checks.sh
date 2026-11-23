@@ -17,11 +17,11 @@ fi
 
 for hook in post-edit pre-commit; do
   if ! help=$(ethos hook "$hook" --help); then
-    echo "ethos hook $hook --help failed; build the pinned contributor version in README.md" >&2
+    echo "ethos hook $hook --help failed; install Ethos v5.2.0 or later as described in README.md" >&2
     exit 1
   fi
   if ! printf '%s\n' "$help" | grep -Fq "ethos hook $hook"; then
-    echo "ethos lacks hook $hook; build the pinned contributor version in README.md" >&2
+    echo "ethos lacks hook $hook; install Ethos v5.2.0 or later as described in README.md" >&2
     exit 1
   fi
 done
