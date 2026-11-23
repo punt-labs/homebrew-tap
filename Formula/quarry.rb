@@ -9,8 +9,8 @@ class Quarry < Formula
 
   desc "Local semantic search engine — extract searchable knowledge from any document"
   homepage "https://github.com/punt-labs/quarry"
-  url "https://files.pythonhosted.org/packages/2d/51/b4c4f49ccfa7e268595de97d657a4ad5ecae5226277eff5f3d5f8c3add7b/punt_quarry-3.9.0.tar.gz"
-  sha256 "35c6c718c05f4d290bb7666ecb4d92def77f90edc3e0d2c46bd7622914580bb4"
+  url "https://files.pythonhosted.org/packages/37/9d/0ef7633057ccbd6dd0ed54441578a8344dae588989ebd09f40ab391898c3/punt_quarry-3.9.1.tar.gz"
+  sha256 "9db8ec9813e242debef7539f60ceb6a7a96965959ac30132ea7ebb2b1080c6e2"
   license "MIT"
 
   depends_on "cmake" => :build # pyarrow sdist builds against apache-arrow
@@ -404,8 +404,8 @@ class Quarry < Formula
   end
 
   resource "punt-observe" do
-    url "https://files.pythonhosted.org/packages/f4/42/e3a57a51742a3554342f1ce667c9ad026f24506610ac186c253c72d3435d/punt_observe-0.1.0-py3-none-any.whl"
-    sha256 "ba0fa482c08ac362df734d69db507b5700f9ce2b0d78b53409798eb25ec58d31"
+    url "https://files.pythonhosted.org/packages/62/c2/1ad4e79c38ecf4d04140814cce259574d8049ec4ef00b084656b5f821954/punt_observe-0.1.1-py3-none-any.whl"
+    sha256 "602dac07e0214e0879e858069becb69003480dd9a17d73175fd4b743ec83d0c0"
   end
 
   resource "pyarrow" do
