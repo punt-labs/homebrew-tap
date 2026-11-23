@@ -68,9 +68,11 @@ Edit checks are advisory; commit and handoff style checks block on failure.
 Tap-wide audit remains the manual gate documented in `CLAUDE.md`.
 
 Run contributor setup before using the generated agents, not just before
-committing. Their generated commands deliberately contain no shell fallback:
-if `ethos` disappears from `PATH`, the shell reports command-not-found and no
-edit feedback is available. Restore the compatible binary and rerun setup.
+committing. Their generated commands fail open, with no fallback style check:
+if `ethos` disappears from `PATH`, no edit feedback is available. Restore the
+compatible binary and rerun setup. A separate repository PostToolUse hook emits
+an advisory if Ethos leaves `PATH`, so missing-binary feedback does not depend
+on Ethos itself. The explicit `~/.punt-hooks-kill` switch silences both hooks.
 Only `Formula/*.rb` receives edit feedback. Shell, YAML, and Makefile edits no
 longer invoke `make check`: this tap has no Makefile or `check` target, so that
 old hook only failed on those edits. Check shell changes with `shellcheck`.
@@ -80,6 +82,9 @@ The generated skill references require both plugin namespaces,
 Ethos and development-plugin installations available in Claude Code before
 using these agents, following the upstream plugin setup instructions.
 The binary setup script does not install Claude Code plugins.
+
+The registry scopes this repository to `engineering`, but the project explicitly
+selects `team: gstack` to retain its existing six generated gstack agents.
 
 Agent regeneration uses team-registry identities, personalities, teams and
 writing styles, with the global role defaults deployed by `ethos seed`.
