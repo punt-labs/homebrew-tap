@@ -35,6 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- mcp-proxy: infer v0.1.0 from the release URLs and verify all four release
+  binaries with the published SHA-256 checksums.
 - ethos config resolves layered again so the engineering team, seeded pipelines and the claude leader identity resolve alongside the vendored gstack team
 
 ## [0.1.0] - 2026-03-12
