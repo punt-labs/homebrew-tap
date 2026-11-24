@@ -5,7 +5,6 @@ class McpProxy < Formula
   desc "Lightweight proxy bridging MCP stdio to shared daemon processes"
   homepage "https://github.com/punt-labs/mcp-proxy"
   license "MIT"
-  version "0.1.0"
 
   on_macos do
     on_arm do
