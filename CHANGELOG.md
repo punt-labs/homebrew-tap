@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- ethos: bump to v5.2.1
 - ethos: bump to v5.2.0
 - Require released Ethos v5.2.0 or later for contributor agent checks instead of
   a pinned development build.
