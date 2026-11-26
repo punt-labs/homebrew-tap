@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Add an Ethos snapshot profile for the existing formula style handoff gate.
+- ethos: bump to v5.2.4
 - ethos: bump to v5.2.3
 - ethos: bump to v5.2.2
 - ethos: bump to v5.2.1
