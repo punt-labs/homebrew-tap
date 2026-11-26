@@ -8,25 +8,25 @@ class Ethos < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/punt-labs/ethos/releases/download/v5.2.3/ethos-darwin-arm64"
-      sha256 "f2c078d9161ad96092d9b3fd98431b5ad13573415058d1f36406249cb48e3502"
+      url "https://github.com/punt-labs/ethos/releases/download/v5.2.4/ethos-darwin-arm64"
+      sha256 "a0379c836030ae99c72ac7d82af6834f2f25a099be966cfdae0739e06276fd75"
     end
 
     on_intel do
-      url "https://github.com/punt-labs/ethos/releases/download/v5.2.3/ethos-darwin-amd64"
-      sha256 "78d496a691048e6cbce8a709ef5e66be7dbc92438c6ff85e943aac238b7b2125"
+      url "https://github.com/punt-labs/ethos/releases/download/v5.2.4/ethos-darwin-amd64"
+      sha256 "acede2a247353054975661be3ab01396393ef891f7ae2c33f1f98fb9964deaa0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/punt-labs/ethos/releases/download/v5.2.3/ethos-linux-arm64"
-      sha256 "edfb8cdfdb4a3641cf45f3faa7abbf433c7f7546dc26f9043a8cac6386fb30b3"
+      url "https://github.com/punt-labs/ethos/releases/download/v5.2.4/ethos-linux-arm64"
+      sha256 "d3adba838c734db83eeb2743075626b5538c49d36fa0b4065b49128e020ffa54"
     end
 
     on_intel do
-      url "https://github.com/punt-labs/ethos/releases/download/v5.2.3/ethos-linux-amd64"
-      sha256 "ae9f4f1a3230d2d6017e260d5fd874eb2fc76f337c72cd6f88b4357493370a1c"
+      url "https://github.com/punt-labs/ethos/releases/download/v5.2.4/ethos-linux-amd64"
+      sha256 "a9d23416923ac839d639fe83d379ffd151ed0055e4d326505c7bd51957f1d277"
     end
   end
 
