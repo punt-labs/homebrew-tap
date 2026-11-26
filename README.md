@@ -53,8 +53,9 @@ sh scripts/setup-agent-checks.sh
 ```
 
 The setup script checks command exit status and real post-edit execution,
-rejects missing or older binaries, runs `ethos enable`, and verifies and executes
-the installed Git pre-commit dispatcher. Ordinary
+rejects missing or older binaries, installs Homebrew's style gems for offline
+handoffs, runs `ethos enable`, and verifies and executes the installed Git
+pre-commit dispatcher. Ordinary
 commits then run blocking style checks on staged `Formula/*.rb` files. Run
 setup once per clone and again when upgrading Ethos; existing Git hooks are
 chained by Ethos rather than replaced. Handoff checks also require the matching
