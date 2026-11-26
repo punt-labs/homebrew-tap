@@ -4,7 +4,7 @@ checks:
     epoch: brew-tap-v1
     sources:
       mode: worktree
-    path: [/home/linuxbrew/.linuxbrew/bin]
+    path: [/home/linuxbrew/.linuxbrew/bin, /opt/homebrew/bin]
     env:
       HOMEBREW_CACHE: '{scratch}/homebrew-cache'
       HOMEBREW_NO_ANALYTICS: '1'
@@ -13,4 +13,8 @@ checks:
       HOMEBREW_NO_INSTALL_FROM_API: '1'
     system:
       tools: [bash, brew, git]
-      dirs: [/home/linuxbrew/.linuxbrew]
+      platforms:
+        linux-amd64:
+          dirs: [/home/linuxbrew/.linuxbrew]
+        darwin-arm64:
+          dirs: [/opt/homebrew]
