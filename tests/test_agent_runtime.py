@@ -68,5 +68,61 @@ class AgentRuntimeTest(unittest.TestCase):
         self.assertEqual(self.run_hook(), '')
 
 
+class AgentSetupTest(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.home = Path(self.temp.name)
+        self.trace = self.home / 'trace'
+        self.command('ethos', r'''
+if [ "$1" = enable ]; then
+  printf '%s\n' 'ethos enable' >> "$TRACE"
+elif [ "${3-}" = --help ]; then
+  printf 'ethos hook %s\n' "$2"
+else
+  printf '%s\n' 'post-edit input: tool_input.file_path is required'
+fi
+''')
+        self.command('git', 'printf "%s\\n" "$HOME/pre-commit"\n')
+        self.command('pre-commit', r'''
+# _cap=$("$ethos_bin" hook pre-commit;
+printf '%s\n' pre-commit >> "$TRACE"
+''')
+
+    def command(self, name, body):
+        path = self.home / name
+        path.write_text('#!/bin/sh\n' + body)
+        path.chmod(0o755)
+
+    def run_setup(self, brew_exit=None):
+        if brew_exit is not None:
+            self.command('brew', 'printf "brew %s\\n" "$*" >> "$TRACE"\n' + f'exit {brew_exit}\n')
+        return subprocess.run(
+            ['/bin/sh', str(ROOT / 'scripts/setup-agent-checks.sh')],
+            cwd=self.home, capture_output=True, text=True, timeout=5,
+            env={'HOME': str(self.home), 'PATH': f'{self.home}{os.pathsep}{os.defpath}',
+                 'TRACE': str(self.trace)},
+        )
+
+    def test_setup_provisions_style_gems_before_enabling(self):
+        result = self.run_setup(brew_exit=0)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.trace.read_text().splitlines(), [
+            'brew install-bundler-gems --add-groups=style', 'ethos enable', 'pre-commit',
+        ])
+
+    def test_failed_provisioning_does_not_enable(self):
+        result = self.run_setup(brew_exit=1)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('failed to install Homebrew style gems; no integration was installed', result.stderr)
+        self.assertEqual(self.trace.read_text().splitlines(), ['brew install-bundler-gems --add-groups=style'])
+
+    def test_missing_brew_does_not_enable(self):
+        result = self.run_setup()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('failed to install Homebrew style gems; no integration was installed', result.stderr)
+        self.assertFalse(self.trace.exists())
+
+
 if __name__ == '__main__':
     unittest.main()

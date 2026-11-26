@@ -35,6 +35,12 @@ if ! printf '%s\n' "$probe" | grep -Fq 'post-edit input: tool_input.file_path is
   exit 1
 fi
 
+if ! brew install-bundler-gems --add-groups=style
+then
+  echo 'failed to install Homebrew style gems; no integration was installed' >&2
+  exit 1
+fi
+
 enabling=1
 ethos enable
 hook=$(git rev-parse --git-path hooks/pre-commit)
