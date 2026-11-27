@@ -16,5 +16,7 @@ checks:
       platforms:
         linux-amd64:
           dirs: [/home/linuxbrew/.linuxbrew]
+        linux-arm64:
+          dirs: [/home/linuxbrew/.linuxbrew]
         darwin-arm64:
           dirs: [/opt/homebrew]
