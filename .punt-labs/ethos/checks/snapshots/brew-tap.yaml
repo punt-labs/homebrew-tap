@@ -1,6 +1,7 @@
 checks:
   formula-style-handoff:
     profile: linux-worktree-v1
+    isolation: {darwin: live-verified}
     epoch: brew-tap-v1
     sources:
       mode: worktree
@@ -19,4 +20,14 @@ checks:
         linux-arm64:
           dirs: [/home/linuxbrew/.linuxbrew]
         darwin-arm64:
-          dirs: [/opt/homebrew]
+          dirs:
+            - /opt/homebrew/bin
+            - /opt/homebrew/Library/Homebrew/rubocops
+            - /opt/homebrew/Library/Homebrew/vendor/bundle
+          files:
+            - /opt/homebrew/Library/.rubocop.yml
+            - /opt/homebrew/Library/tap_rubocop_style.yml
+            - /opt/homebrew/Library/Homebrew/Gemfile.lock
+            - /opt/homebrew/Library/Homebrew/rubocops.rb
+            - /opt/homebrew/Library/Homebrew/style.rb
+            - /opt/homebrew/Library/Homebrew/utils/rubocop.rb

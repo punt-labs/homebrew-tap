@@ -11,4 +11,4 @@ if command -v ethos >/dev/null 2>&1 && probe=$(printf '{}' | ethos hook post-edi
   esac
 fi
 
-printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Ethos is missing or incompatible on PATH; formula edit checks are not running. Install Ethos v5.2.0 or later and run sh scripts/setup-agent-checks.sh."}}'
+printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"Ethos is missing or incompatible on PATH; formula edit checks are not running. Install Ethos v5.3.2 or later and run sh scripts/setup-agent-checks.sh."}}'
