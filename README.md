@@ -63,6 +63,14 @@ chained by Ethos rather than replaced. Handoff checks also require the matching
 and its `SubagentStop` hook. Without these local integrations, the check-set
 declarations alone do not enforce commit or handoff checks.
 
+On Apple silicon macOS, update Homebrew to 7.0.0 or later for the tap style
+configuration that the handoff policy verifies. On macOS, approve the
+live-verified handoff policy from this checkout:
+
+```bash
+ethos handoff approve-live brew-tap
+```
+
 Edit checks are advisory; commit and handoff style checks block on failure.
 Tap-wide audit remains the manual gate documented in `CLAUDE.md`.
 
