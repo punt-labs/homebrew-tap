@@ -9,8 +9,8 @@ class Quarry < Formula
 
   desc "Local semantic search engine — extract searchable knowledge from any document"
   homepage "https://github.com/punt-labs/quarry"
-  url "https://files.pythonhosted.org/packages/37/9d/0ef7633057ccbd6dd0ed54441578a8344dae588989ebd09f40ab391898c3/punt_quarry-3.9.1.tar.gz"
-  sha256 "9db8ec9813e242debef7539f60ceb6a7a96965959ac30132ea7ebb2b1080c6e2"
+  url "https://files.pythonhosted.org/packages/07/52/6f3e55219c18d316714b97d9eae712b66ab8e1d9a0fd5c3b2b3c4f1eb6fe/punt_quarry-4.0.0.tar.gz"
+  sha256 "9e4ea1a203d80d018cc191d089bd1bdd87d84881c0deb993abb99d94d21783ba"
   license "MIT"
 
   depends_on "cmake" => :build # pyarrow sdist builds against apache-arrow
@@ -189,13 +189,13 @@ class Quarry < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/fd/11/b524cbd9bbdaca58608e4cf4053fd463417549e1959fa8d3aa18319f9555/certifi-2026.10.23.tar.gz"
-    sha256 "a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd"
+    url "https://files.pythonhosted.org/packages/51/33/4cd27639502f010084bcef7a2036391dd637439901341ce1a530f36f6e51/certifi-2026.11.20.tar.gz"
+    sha256 "af1cb240a8133f105aa52684a3a3258339d7f2fd0bd4e2812698ff5cf5588c4e"
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz"
-    sha256 "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+    url "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz"
+    sha256 "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be"
   end
 
   resource "charset-normalizer" do
@@ -394,8 +394,8 @@ class Quarry < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/ba/25/7c72c307aafc96fa87062aa6291d9f7c94836e43214d43722e86037aac02/protobuf-6.33.5.tar.gz"
-    sha256 "6ddcac2a081f8b7b9642c09406bc6a4290128fce5f471cddd165960bb9119e5c"
+    url "https://files.pythonhosted.org/packages/d9/89/5b8517baa72f84a67b8a307ba953c91057af618bf40bf676f3c03551f8f0/protobuf-7.36.2.tar.gz"
+    sha256 "497d0463ff3316681da6c0b9e8d06cb465d61abce00b613ab42226175644d1bb"
   end
 
   resource "psutil" do
@@ -514,8 +514,8 @@ class Quarry < Formula
   end
 
   resource "shapely" do
-    url "https://files.pythonhosted.org/packages/4d/bc/0989043118a27cccb4e906a46b7565ce36ca7b57f5a18b78f4f1b0f72d9d/shapely-2.1.2.tar.gz"
-    sha256 "2ed4ecb28320a433db18a5bf029986aa8afcfd740745e78847e330d5d94922a9"
+    url "https://files.pythonhosted.org/packages/f3/ab/924b6e202f796d270a3041a230151f7908db5ea48c74effe6f8023e9bd05/shapely-2.2.0.tar.gz"
+    sha256 "e8865e553d874a1ec4a032057ea81fca9def37b188cd8fb550af3b3480b3f88c"
   end
 
   resource "shellingham" do
