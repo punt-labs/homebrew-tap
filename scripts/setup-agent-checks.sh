@@ -15,13 +15,28 @@ if ! command -v ethos >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! version=$(ethos version) || ! printf '%s\n' "$version" | awk '
+  /^ethos [0-9]+\.[0-9]+\.[0-9]+(\+[A-Za-z0-9.-]+)?$/ {
+    split($2, release, /[.+]/)
+    major = release[1] + 0
+    minor = release[2] + 0
+    patch = release[3] + 0
+    if (major > 5 || (major == 5 && (minor > 3 || (minor == 3 && patch >= 2))))
+      compatible = 1
+  }
+  END { exit !compatible }
+'; then
+  echo 'agent checks require Ethos v5.3.2 or later; see README.md' >&2
+  exit 1
+fi
+
 for hook in post-edit pre-commit; do
   if ! help=$(ethos hook "$hook" --help); then
-    echo "ethos hook $hook --help failed; install Ethos v5.2.0 or later as described in README.md" >&2
+    echo "ethos hook $hook --help failed; install Ethos v5.3.2 or later as described in README.md" >&2
     exit 1
   fi
   if ! printf '%s\n' "$help" | grep -Fq "ethos hook $hook"; then
-    echo "ethos lacks hook $hook; install Ethos v5.2.0 or later as described in README.md" >&2
+    echo "ethos lacks hook $hook; install Ethos v5.3.2 or later as described in README.md" >&2
     exit 1
   fi
 done

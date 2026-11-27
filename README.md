@@ -30,14 +30,14 @@ This starts `quarry serve` on port 8420 at login, with automatic restart on cras
 
 ## Contributor checks
 
-The agent check policy requires Ethos v5.2.0 or later for DES-085 (`post-edit`
-and staged checks). This tap ships a compatible version: run
+The agent check policy requires Ethos v5.3.2 or later for the per-OS isolation
+setting in the formula style handoff. This tap ships a compatible version: run
 `brew install punt-labs/tap/ethos`, or `brew upgrade punt-labs/tap/ethos` for an
-existing installation. Alternatively, install the released v5.2.0 binary and
+existing installation. Alternatively, install the released v5.3.2 binary and
 plugin using its tagged installer:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/punt-labs/ethos/v5.2.0/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/punt-labs/ethos/v5.3.2/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 ethos version
 ```

@@ -75,7 +75,9 @@ class AgentSetupTest(unittest.TestCase):
         self.home = Path(self.temp.name)
         self.trace = self.home / 'trace'
         self.command('ethos', r'''
-if [ "$1" = enable ]; then
+if [ "$1" = version ]; then
+  printf 'ethos %s\n' "$ETHOS_VERSION"
+elif [ "$1" = enable ]; then
   printf '%s\n' 'ethos enable' >> "$TRACE"
 elif [ "${3-}" = --help ]; then
   printf 'ethos hook %s\n' "$2"
@@ -94,15 +96,21 @@ printf '%s\n' pre-commit >> "$TRACE"
         path.write_text('#!/bin/sh\n' + body)
         path.chmod(0o755)
 
-    def run_setup(self, brew_exit=None):
+    def run_setup(self, brew_exit=None, version='5.3.2'):
         if brew_exit is not None:
             self.command('brew', 'printf "brew %s\\n" "$*" >> "$TRACE"\n' + f'exit {brew_exit}\n')
         return subprocess.run(
             ['/bin/sh', str(ROOT / 'scripts/setup-agent-checks.sh')],
             cwd=self.home, capture_output=True, text=True, timeout=5,
             env={'HOME': str(self.home), 'PATH': f'{self.home}{os.pathsep}{os.defpath}',
-                 'TRACE': str(self.trace)},
+                 'TRACE': str(self.trace), 'ETHOS_VERSION': version},
         )
+
+    def test_setup_rejects_5_3_1_before_provisioning(self):
+        result = self.run_setup(brew_exit=0, version='5.3.1')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('Ethos v5.3.2 or later', result.stderr)
+        self.assertFalse(self.trace.exists())
 
     def test_setup_provisions_style_gems_before_enabling(self):
         result = self.run_setup(brew_exit=0)
